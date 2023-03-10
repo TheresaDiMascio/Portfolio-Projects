@@ -68,6 +68,7 @@ The purpose of completing these projects is to demonstrate my proficiency in the
      ![Racial Breakdown by Burough](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%231%3A%20Multivariate%20Analysis%20of%20SAT%20Data/Racial%20Breakdown%20by%20Burough.png)
      
      - Used linear regression to model a moderate positive correlation between average SAT 2400 scores and percentage of student body that took the SAT:
+     
      ![Percent Tested](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%231%3A%20Multivariate%20Analysis%20of%20SAT%20Data/Percent%20Tested.png)
 
   **Project #2: ABC Analysis and Cycle Counts**
@@ -79,6 +80,7 @@ The purpose of completing these projects is to demonstrate my proficiency in the
      - There are 500 related service parts (e.g. replacement strings, electronics, installment services, etc.). Of these, 400 are directly related to a single instrument while 100 are shared among instrument families.
      - There are 4000 production parts (e.g. wood, screws, tools, unshaped metals, etc.). 3000 of these are directly related to a single instrument while 1000 are shared among instrument families.
   3. Quantities for each of these item types were arbitrarily assigned roughly to match their complexity/number of models. Formulas were defined in columns H, I, and J to give indices to the start of these item groups in the item master. **_Formula:_** "=$J6 + $G6 + IF($C5 <> $C6, VLOOKUP("Shared " & $C6, $E$35:$G$40, 3, FALSE))"
+  
   ![Instrument Table](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%232%3A%20ABC%20Analysis%20and%20Cycle%20Counts/Instrument%20Table.png)
   
   4. The "Item Master" worksheet uses these indces to assign an item number to each of the 5000 items systematically as follows:
@@ -88,6 +90,7 @@ The purpose of completing these projects is to demonstrate my proficiency in the
      - Item suffix of 3 digits counts up from 000 if a subsequent line contains a new model number.
      - "Item Description" summarizes this numbering logic to describe each item. **_Formula_:** "LEFT($C6, 1) & LOWER(RIGHT($C6, LEN($C6) - 1)) & IF(AND($G6 <> "00", $B6 = "Retail Item"), " model #" & $G6, " " & LOWER($B6) & " #" & $H6)"
      - "Unique" checks that each item number is a unique primary key using SUM(COUNTIFS()).
+     
   ![Item Master 1](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%232%3A%20ABC%20Analysis%20and%20Cycle%20Counts/Item%20Master%201.png)
   
   5. Item Master then uses partially random methods to assign values for iventory, standard cost, and annual consumption for each item. Parameters were tweaked until the "Pivot Table" worksheet produced inventory/consumption totals that made sense for the business:
@@ -100,23 +103,28 @@ The purpose of completing these projects is to demonstrate my proficiency in the
      - Consumption Rank = where an item ranks with respect to its annual consumption value = "COUNTIFS($P:$P, ">" & $P6) + 1"
      - Percent Rank = consumption rank as a percentage = "(COUNTIFS($P:$P, ">" & $P6) + 1) / (COUNTA($I:$I) - 1)"
      - Cumulative Consumption = total consumption of all items that have a lower annual consumption than this item = "SUMIFS($P:$P, $Q:$Q, "<" & $Q6)"
+  
   ![Item Master 2](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%232%3A%20ABC%20Analysis%20and%20Cycle%20Counts/Item%20Master%202.png)
   
   7. The "ABC Analysis" worksheet was created with the following features:
      - User-defined counts per year for A, B, and C items. These parameters are usually set by auditing standards. A items need to be cycle counted more often to maintain inventory accuracy because they are more valuable and have more turnover (consumption). B items are either valuable or have high turnover. C items are either low in value or low in turnover.
+     
      ![Auditor Standards](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%232%3A%20ABC%20Analysis%20and%20Cycle%20Counts/Auditor%20Standards.png)
      
      - User-defined counting days per year. A typical business would only count on business days (around 250 days per year), but larger companies may cycle count 365 days a year.
+     
      ![Counting Days](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%232%3A%20ABC%20Analysis%20and%20Cycle%20Counts/Counting%20Days.png)
      
      - Calculator #1 (item-based) lets the user set a percentage of items that are A, B, or C. The model then suggests a certain number of daily counts of each item and calculates the amount of consumption that is verified by cycle counting according to the auditing standards set by the user. If the total percentage is below 100%, the items that are not assigned A, B, or C will not be counted, and the "Consumption per Count" measure will increase (more efficient counting). However, this inventory will not be verified at any point during the year.
      - Calculator #2 (consumption-based) lets the user set a percentage of consumption that is assigned to A, B, and C items. The model then assigns a percentage of items as A, B, or C.
      - Calculator #3 (counting resources-based) lets the user choose how many daily cycle counts of A and B items they desire then the model assigns a percentage of items as A, B, or C and gives a suggested daily count of C items to meet auditor standards.
+     
      ![Calculators](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%232%3A%20ABC%20Analysis%20and%20Cycle%20Counts/Calculators.png)
      
   8. Two measures of inventory accuracy ("Cycle Counted Consumption" and "Cycle Counted Inventory") were constructed to allow comparison of user inputs across calculators.
   9. Two measures of counting efficiency ("Consumption per Count" and "Inventory per Count") were constructed to allow comparison of user inputs across calculators.
   10. Two graphs ("Cumulative Consumption Distribution by Item" and "Annual Consumption by Item") were constructed to give the user to make more information when selecting item/consumption percentages. A items would be on the left-hand side of each graph, B items would be in the middle, and C items are on the far right:
+  
   ![Two Graphs](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%232%3A%20ABC%20Analysis%20and%20Cycle%20Counts/Two%20Graphs.png)
 
   **Project #3: Health Insurance Dashboard**
@@ -125,6 +133,7 @@ The purpose of completing these projects is to demonstrate my proficiency in the
   3. Used Power Query's Web.Contents and Csv.Document data connectors to import the health insurance data into Power Query Editor.
   4. Added index column to be used as policyholder's unique ID number.
   5. Wrote the custom "gaussianHeight" function in Power Query to assign a random (Gaussian) height to male and female policyholders given the national averages and standard deviations:
+  
   ![gaussianHeight](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%233%3A%20Health%20Insurance%20Dashboard/Gaussian%20Height%20Function.png)
   
   6. Added calculated column "Weight (lbs)" using BMI and height. **_Formula:_** "Number.Round(\[bmi] * Number.Power(\[#"Height (in)"], 2) / 703, 0)"
@@ -136,6 +145,7 @@ The purpose of completing these projects is to demonstrate my proficiency in the
   10. Used Power Query's Web.Contents and Excel.Workbook data connectors to pull the 1000 most common last names from the 2010 U.S. Census official website (Source: [2010 Surnames](https://www2.census.gov/topics/genealogy/2010surnames/)). Added 1 calculated column to assist with random last name generation:
      - Cumulative density function to represent the probability of having a certain name or a more common name in 2010. **_Formula_:** "=\[@\[CUMULATIVE PROPORTION]] / SUM($D:$D)"
   11. Created "User Dashboard" worksheet to act as main interface between policyholder and their confidential health information. Check the box in cell A4 (Excel for desktop only) to view the dashboard in explanation mode:
+  
   ![Explanation Mode](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%233%3A%20Health%20Insurance%20Dashboard/Explanation%20Mode.png)
   
   12. The policyholder enters their unique ID into cell D7 to view their confidential health information. Features of the dashboard include:
@@ -150,6 +160,7 @@ The purpose of completing these projects is to demonstrate my proficiency in the
      - If the random number doesn't match a CDF exactly, XLOOKUP will find the name that is next greatest.
      - FILTER only allows the lookup to search within the birth decade of the policyholder.
   14. The dashboard tells the user how popular their first and last names are as a rank (with correct ordinal suffix) within their gender/birth decade:
+  
   ![Probable Name Generator](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%233%3A%20Health%20Insurance%20Dashboard/Probable%20Name%20Generator.png)
   
   **Project #4: Video Game Sales and Ratings (WORK IN PROGRESS)**
