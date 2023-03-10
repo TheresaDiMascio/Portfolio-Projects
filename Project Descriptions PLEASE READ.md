@@ -16,8 +16,8 @@ The purpose of completing these projects is to demonstrate my proficiency in the
   
   1. Found public dataset of New York City public high school SAT data (2014-2015) on Kaggle (Source: [Average SAT Scores for NYC Public Schools](https://www.kaggle.com/datasets/nycopendata/high-schools)).
   2. Uploaded CSV file (435 rows, 22 columns) to GitHub to use as primary data source.
-  3. Used Power Query's Web.Content and CSV.Document data connectors to load the data from GitHub into Excel (worksheet "NYC SAT Data"): **PICTURE**
-  4. Used Power Query's Web.Content and Pdf.Tables data connectors to read SAT score percentiles from College Board's official report on SAT scores (Source: [Understanding SAT Scores](https://satsuite.collegeboard.org/media/pdf/understanding-sat-scores.pdf)).
+  3. Used Power Query's Web.Contents and CSV.Document data connectors to load the data from GitHub into Excel (worksheet "NYC SAT Data"): **PICTURE**
+  4. Used Power Query's Web.Contents and Pdf.Tables data connectors to read SAT score percentiles from College Board's official report on SAT scores (Source: [Understanding SAT Scores](https://satsuite.collegeboard.org/media/pdf/understanding-sat-scores.pdf)).
      - Original table import needed to be cleaned in Power Query by promoting headers, breaking double-column format into two tables, and appending: **PICTURE**
      - Removed null rows and changed data types to percentiles
      - Left with two tables (Total SAT Percentiles and SAT Section Percentiles) for looking up percentiles for SAT subsection and total scores
@@ -77,3 +77,38 @@ The purpose of completing these projects is to demonstrate my proficiency in the
   8. Two measures of inventory accuracy ("Cycle Counted Consumption" and "Cycle Counted Inventory") were constructed to allow comparison of user inputs across calculators.
   9. Two measures of counting efficiency ("Consumption per Count" and "Inventory per Count") were constructed to allow comparison of user inputs across calculators.
   10. Two graphs ("Cumulative Consumption Distribution by Item" and "Annual Consumption by Item") were constructed to give the user to make more information when selecting item/consumption percentages. A items would be on the left-hand side of each graph, B items would be in the middle, and C items are on the far right.
+
+  **Project #3: Health Insurance Dashboard**
+  1. Found public dataset of health insurance information on Kaggle (Source: [Medical Cost Personal Datasets](https://www.kaggle.com/datasets/mirichoi0218/insurance)).
+  2. Uploaded CSV file (1338 rows, 7 columns) to GitHub to use as primary data source.
+  3. Used Power Query's Web.Contents and Csv.Document data connectors to import the health insurance data into Power Query Editor.
+  4. Added index column to be used as policyholder's unique ID number.
+  5. Wrote the custom "gaussianHeight" function in Power Query to assign a random (Gaussian) height to male and female policyholders given the national averages and standard deviations:
+  ![gaussianHeight](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%233%3A%20Health%20Insurance%20Dashboard/Gaussian%20Height%20Function.png)
+  
+  6. Added calculated column "Weight (lbs)" using BMI and height. **_Formula:_** "Number.Round(\[bmi] * Number.Power(\[#"Height (in)"], 2) / 703, 0)"
+  7. Added two columns with random numbers between 0 and 1 for generating a probable first and last name for each policyholder.
+  8. Used Power Query's Web.Contents and Web.Page data connectors to pull BMI ranges of underweight, healthy, overweight, and obese Americans from the CDC's official website (Source: [About Adult BMI](https://www.cdc.gov/healthyweight/assessing/bmi/adult_bmi/index.html)).
+  9. Used Power Query's Web.Contents and Web.Page data connectors to pull the top 200 baby names of each decade from the Social Security Administration's official website (Source: [Popular Baby Names by Decade]([https://www.ssa.gov/OACT/babynames/decades/names1950s.html](https://www.ssa.gov/OACT/babynames/decades/)). Cleaned the data and added 4 calculated columns (orange headers) to assist with random name generation:
+     - Two columns for male and female probability density functions (i.e. the probability of a certain name being chosen within a certain decade). **_Formula_:** "= \[@\[Males Number]] / SUMIFS($C:$C, $F:$F, \[@Decade])"
+     - Two columns for male and female cumulative density functions (i.e. the probability of a certain name or a more common name being chosen within a certain decade). **_Formula_:** "=SUMIFS($G:$G, $A:$A, "<=" & \[@Rank], $F:$F, \[@Decade])"
+  10. Used Power Query's Web.Contents and Excel.Workbook data connectors to pull the 1000 most common last names from the 2010 U.S. Census official website (Source: [2010 Surnames](https://www2.census.gov/topics/genealogy/2010surnames/)). Added 1 calculated column to assist with random last name generation:
+     - Cumulative density function to represent the probability of having a certain name or a more common name in 2010. **_Formula_:** "=\[@\[CUMULATIVE PROPORTION]] / SUM($D:$D)"
+  11. Created "User Dashboard" worksheet to act as main interface between policyholder and their confidential health information. Check the box in cell A4 (Excel for desktop only) to view the dashboard in explanation mode:
+  ![Explanation Mode](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%233%3A%20Health%20Insurance%20Dashboard/Explanation%20Mode.png)
+  
+  12. The policyholder enters their unique ID into cell D7 to view their confidential health information. Features of the dashboard include:
+     - Age, sex, and BMI, which were pulled from the original data source. BMI is conditionally formatted to show how overweight (red) or underweight (yellow) a policyholder is.
+     - Condition, which is assigned using XLOOKUP. Based upon the CDC guidelines for BMI.
+     - Height and weight, which have slicers (yellow), which uses Excel's data validation feature so the user can change from imperial (in, ft'in", and lbs) to metric (kg and cm) units.
+     - Subpopulation averages, which use AVERAGEIFS to show the user where they stand with respect to the subpopulation of policyholders of the same gender.
+     - Charges and charges percentile, which show the user their medical costs and where they stand within the subpopulation.
+     - If the policyholder is a smoker, the dashboard reminds them how much they would save on average if they quit smoking.
+  13. The probable name generator uses the Social Security Association and 2010 U.S. Census datasets to assign a first and last name to each unique ID given their two random numbers between 0 and 1. The methodology for doing so is as follows:
+     - The formulas use XLOOKUP, VLOOKUP, and FILTER to see where their random number lies within the cumulative density function (CDF) of the "First Name Rankings Appended" and "2010 Census Top 1000 Last Names" tables.
+     - If the random number doesn't match a CDF exactly, XLOOKUP will find the name that is next greatest.
+     - FILTER only allows the lookup to search within the birth decade of the policyholder.
+  14. The dashboard tells the user how popular their first and last names are as a rank (with correct ordinal suffix) within their gender/birth decade:
+  ![Probable Name Generator](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%233%3A%20Health%20Insurance%20Dashboard/Probable%20Name%20Generator.png)
+  
+  **Project #4: Video Game Sales and Ratings (WORK IN PROGRESS)**
