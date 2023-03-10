@@ -134,7 +134,7 @@ The purpose of completing these projects is to demonstrate my proficiency in the
   4. Added index column to be used as policyholder's unique ID number.
   5. Wrote the custom "gaussianHeight" function in Power Query to assign a random (Gaussian) height to male and female policyholders given the national averages and standard deviations:
   
-    ![gaussianHeight](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%233%3A%20Health%20Insurance%20Dashboard/Gaussian%20Height%20Function.png)
+   ![gaussianHeight](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%233%3A%20Health%20Insurance%20Dashboard/Gaussian%20Height%20Function.png)
   
   6. Added calculated column "Weight (lbs)" using BMI and height. **_Formula:_** "Number.Round(\[bmi] * Number.Power(\[#"Height (in)"], 2) / 703, 0)"
   7. Added two columns with random numbers between 0 and 1 for generating a probable first and last name for each policyholder.
@@ -146,7 +146,7 @@ The purpose of completing these projects is to demonstrate my proficiency in the
      - Cumulative density function to represent the probability of having a certain name or a more common name in 2010. **_Formula_:** "=\[@\[CUMULATIVE PROPORTION]] / SUM($D:$D)"
   11. Created "User Dashboard" worksheet to act as main interface between policyholder and their confidential health information. Check the box in cell A4 (Excel for desktop only) to view the dashboard in explanation mode:
   
-    ![Explanation Mode](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%233%3A%20Health%20Insurance%20Dashboard/Explanation%20Mode.png)
+   ![Explanation Mode](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%233%3A%20Health%20Insurance%20Dashboard/Explanation%20Mode.png)
   
   12. The policyholder enters their unique ID into cell D7 to view their confidential health information. Features of the dashboard include:
      - Age, sex, and BMI, which were pulled from the original data source. BMI is conditionally formatted to show how overweight (red) or underweight (yellow) a policyholder is.
@@ -161,6 +161,6 @@ The purpose of completing these projects is to demonstrate my proficiency in the
      - FILTER only allows the lookup to search within the birth decade of the policyholder.
   14. The dashboard tells the user how popular their first and last names are as a rank (with correct ordinal suffix) within their gender/birth decade:
   
-    ![Probable Name Generator](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%233%3A%20Health%20Insurance%20Dashboard/Probable%20Name%20Generator.png)
+   ![Probable Name Generator](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%233%3A%20Health%20Insurance%20Dashboard/Probable%20Name%20Generator.png)
   
   **Project #4: Video Game Sales and Ratings (WORK IN PROGRESS)**
