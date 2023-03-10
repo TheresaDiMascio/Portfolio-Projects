@@ -17,22 +17,27 @@ The purpose of completing these projects is to demonstrate my proficiency in the
   1. Found public dataset of New York City public high school SAT data (2014-2015) on Kaggle (Source: [Average SAT Scores for NYC Public Schools](https://www.kaggle.com/datasets/nycopendata/high-schools)).
   2. Uploaded CSV file (435 rows, 22 columns) to GitHub to use as primary data source.
   3. Used Power Query's Web.Contents and CSV.Document data connectors to load the data from GitHub into Excel (worksheet "NYC SAT Data"):
+  
   ![Power Query Load](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%231%3A%20Multivariate%20Analysis%20of%20SAT%20Data/Power%20Query%20Load.png)
   
   5. Used Power Query's Web.Contents and Pdf.Tables data connectors to read SAT score percentiles from College Board's official report on SAT scores (Source: [Understanding SAT Scores](https://satsuite.collegeboard.org/media/pdf/understanding-sat-scores.pdf)).
      - Original table import needed to be cleaned in Power Query by promoting headers, breaking double-column format into two tables, and appending:
+     
      ![SAT Percentiles Initial Load](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%231%3A%20Multivariate%20Analysis%20of%20SAT%20Data/SAT%20Percentiles%20Initial%20Load.png)
      
      - Removed null rows and changed data types to percentiles.
      - Left with two tables (Total SAT Percentiles and SAT Section Percentiles) for looking up percentiles for SAT subsection and total scores:
+     
      ![SAT Percentiles Final](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%231%3A%20Multivariate%20Analysis%20of%20SAT%20Data/SAT%20Percentiles%20Final.png)
      
   6. Used Power Query's Web.Content and Excel.Workbook data connectors to import IRS's tax return data by ZIP code for New York (Source: [IRS New York Tax Returns by ZIP](https://www.irs.gov/pub/irs-soi/20zp33ny.xlsx)).
      - Initial load had many extraneous fields and needed to be transformed before use:
+     
      ![IRS Tax Initial Load](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%231%3A%20Multivariate%20Analysis%20of%20SAT%20Data/IRS%20Tax%20Initial%20Load.png)
      
      - Removed all fields except ZIP Code, Income Bracket, Count of Returns Filed, and Reported Income.
      - Aggregated rows by ZIP code to calculate Average Total Income for each New York ZIP code:
+     
      ![IRS Returns by ZIP](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%231%3A%20Multivariate%20Analysis%20of%20SAT%20Data/Returns%20by%20ZIP.png)
      
   7. Loaded all tables into Excel then added 18 calculated columns (orange headers) to "NYC SAT Data" worksheet:
@@ -46,16 +51,20 @@ The purpose of completing these projects is to demonstrate my proficiency in the
      - Relative strong subject: "=IF(\[@\[National Sample LOOKUP Math]] > \[@\[National Sample LOOKUP Reading]], "Math", IF(\[@\[National Sample LOOKUP Reading]] > \[@\[National Sample LOOKUP Math]], "Reading", "Balanced Math/Reading"))"
   8. Created new worksheet ("Exploratory Graphs") to visualize and perform multivariate analysis on the data:
      - Calculated inter-correlations between subsection scores. Reading/writing scores were highly correlated with each other. Math scores were strongly correlated with reading/writing, but not as much as reading with writing:
+     
      ![Subsection Inter-Correlation](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%231%3A%20Multivariate%20Analysis%20of%20SAT%20Data/Subsection%20Inter-Correlations.png)
      
      - Used scatterplot clustering to visualize a weak yet detectable correlation between school racial breakdown and subsection/total SAT scores:
+     
      ![Race Clustering](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%231%3A%20Multivariate%20Analysis%20of%20SAT%20Data/Race%20Clustering.png)
      
      - Proved a non-correlation between school name attributes (e.g. branding as a "science" school) and total SAT 2400 score.
      - Used Excel map visual to show a moderate geographical clustering of total SAT 2400 scores by ZIP code and provided side-by-side comparison of average reported income by ZIP code. Suburbs showed a similar clustering, implying correlation; however, Manhattan's business districts seem to skew data away from correlation in those particular ZIP codes:
+     
      ![Geographic Clustering](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%231%3A%20Multivariate%20Analysis%20of%20SAT%20Data/Geographic%20Clustering.png)
      
      - Visualized strong relationship between average SAT 2400 score and racial breakdown when data is statified by burough. Schools predominated by whites are more present in Staten Island, which performed higher on the SAT. Schools predominated by Hispanic/black students were more present in the Bronx/Brooklyn, which performed worse on the SAT:
+     
      ![Racial Breakdown by Burough](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%231%3A%20Multivariate%20Analysis%20of%20SAT%20Data/Racial%20Breakdown%20by%20Burough.png)
      
      - Used linear regression to model a moderate positive correlation between average SAT 2400 scores and percentage of student body that took the SAT:
