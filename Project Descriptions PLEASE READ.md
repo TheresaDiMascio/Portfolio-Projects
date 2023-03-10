@@ -125,7 +125,7 @@ The purpose of completing these projects is to demonstrate my proficiency in the
   9. Two measures of counting efficiency ("Consumption per Count" and "Inventory per Count") were constructed to allow comparison of user inputs across calculators.
   10. Two graphs ("Cumulative Consumption Distribution by Item" and "Annual Consumption by Item") were constructed to give the user to make more information when selecting item/consumption percentages. A items would be on the left-hand side of each graph, B items would be in the middle, and C items are on the far right:
   
-    ![Two Graphs](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%232%3A%20ABC%20Analysis%20and%20Cycle%20Counts/Two%20Graphs.png)
+   ![Two Graphs](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%232%3A%20ABC%20Analysis%20and%20Cycle%20Counts/Two%20Graphs.png)
 
   **Project #3: Health Insurance Dashboard**
   1. Found public dataset of health insurance information on Kaggle (Source: [Medical Cost Personal Datasets](https://www.kaggle.com/datasets/mirichoi0218/insurance)).
