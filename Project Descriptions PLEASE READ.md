@@ -83,7 +83,7 @@ The purpose of completing these projects is to demonstrate my proficiency in the
   
   ![Instrument Table](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%232%3A%20ABC%20Analysis%20and%20Cycle%20Counts/Instrument%20Table.png)
   
-  4. The "Item Master" worksheet uses these indces to assign an item number (e.g. 10001-01) to each of the 5,000 items systematically as follows:
+  4. The "Item Master" worksheet uses these indces to assign an 8-digit item number (e.g. 11000-001) to each of the 5,000 items systematically as follows:
      - First digit represents whether the item is a production, service, or retail item.
      - Next 2 digits represent the related instrument where the first digit corresponds with the instrument family.
      - Next 2 digits represent the instrument/accessory model using XMATCH and VLOOKUP functions. **_Formula_:** "=TEXT(IF($B6 = "Retail Item", IF((ROW($A6) - 4504 - XMATCH($C6, $C$4506:$C$5005, 0, 1)) <= VLOOKUP($C6, 'Instrument Table'!$B:$D, 3, FALSE), ROW($A6) - 4504 - XMATCH($C6, $C$4506:$C$5005, 0, 1), 0), 0), "00")"
