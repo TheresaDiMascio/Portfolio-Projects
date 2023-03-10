@@ -69,6 +69,8 @@ The purpose of completing these projects is to demonstrate my proficiency in the
      - There are 500 related service parts (e.g. replacement strings, electronics, installment services, etc.). Of these, 400 are directly related to a single instrument while 100 are shared among instrument families.
      - There are 4000 production parts (e.g. wood, screws, tools, unshaped metals, etc.). 3000 of these are directly related to a single instrument while 1000 are shared among instrument families.
   3. Counts for each of these item types were arbitrarily assigned roughly to match their complexity/number of models. Formulas were defined in columns H, I, and J to give indices to the start of these item groups in the item master. **_Ex_:** "=$J6 + $G6 + IF($C5 <> $C6, VLOOKUP("Shared " & $C6, $E$35:$G$40, 3, FALSE))"
+  ![Instrument Table](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%232%3A%20ABC%20Analysis%20and%20Cycle%20Counts/Instrument%20Table.png)
+  
   4. The "Item Master" worksheet uses these indces to assign an item number to each of the 5000 items systematically as follows:
      - First digit represents whether the item is a production, service, or retail item.
      - Next 2 digits represent the related instrument where the first digit corresponds with the instrument family.
@@ -76,6 +78,8 @@ The purpose of completing these projects is to demonstrate my proficiency in the
      - Item suffix of 3 digits counts up from 000 if a subsequent line contains a new model number.
      - "Item Description" summarizes this numbering logic to describe each item. **_Formula_:** "LEFT($C6, 1) & LOWER(RIGHT($C6, LEN($C6) - 1)) & IF(AND($G6 <> "00", $B6 = "Retail Item"), " model #" & $G6, " " & LOWER($B6) & " #" & $H6)"
      - "Unique" checks that each item number is a unique primary key using SUM(COUNTIFS()).
+  ![Item Master 1](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%232%3A%20ABC%20Analysis%20and%20Cycle%20Counts/Item%20Master%201.png)
+  
   5. Item Master then uses partially random methods to assign values for iventory, standard cost, and annual consumption for each item. Parameters were tweaked until the "Pivot Table" worksheet produced inventory/consumption totals that made sense for the business:
      - Inventory was assigned random uniformly for service/retail items and according to a randomized power function for production. **_Formula_:** "=ROUND(IF($B6 = "Production Item",POWER(RANDBETWEEN(0, 2), RANDBETWEEN(1, 5)), IF($B6 = "Service Item", RANDBETWEEN(0, 10), RANDBETWEEN(0, 100))), 2)"
      - Standard Cost was assigned uniformly for all items. Retail items cost between $1,000 and $10,000 (this is not the same as price). **_Formula_:** "=ROUND(IF($B6 = "Production Item", RANDBETWEEN(1, 100), IF($B6 = "Service Item", RANDBETWEEN(1, 1000), RANDBETWEEN(1000, 10000))), 2)"
@@ -86,15 +90,24 @@ The purpose of completing these projects is to demonstrate my proficiency in the
      - Consumption Rank = where an item ranks with respect to its annual consumption value = "COUNTIFS($P:$P, ">" & $P6) + 1"
      - Percent Rank = consumption rank as a percentage = "(COUNTIFS($P:$P, ">" & $P6) + 1) / (COUNTA($I:$I) - 1)"
      - Cumulative Consumption = total consumption of all items that have a lower annual consumption than this item = "SUMIFS($P:$P, $Q:$Q, "<" & $Q6)"
+  ![Item Master 2](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%232%3A%20ABC%20Analysis%20and%20Cycle%20Counts/Item%20Master%202.png)
+  
   7. The "ABC Analysis" worksheet was created with the following features:
      - User-defined counts per year for A, B, and C items. These parameters are usually set by auditing standards. A items need to be cycle counted more often to maintain inventory accuracy because they are more valuable and have more turnover (consumption). B items are either valuable or have high turnover. C items are either low in value or low in turnover.
+     ![Auditor Standards](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%232%3A%20ABC%20Analysis%20and%20Cycle%20Counts/Auditor%20Standards.png)
+     
      - User-defined counting days per year. A typical business would only count on business days (around 250 days per year), but larger companies may cycle count 365 days a year.
+     ![Counting Days](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%232%3A%20ABC%20Analysis%20and%20Cycle%20Counts/Counting%20Days.png)
+     
      - Calculator #1 (item-based) lets the user set a percentage of items that are A, B, or C. The model then suggests a certain number of daily counts of each item and calculates the amount of consumption that is verified by cycle counting according to the auditing standards set by the user. If the total percentage is below 100%, the items that are not assigned A, B, or C will not be counted, and the "Consumption per Count" measure will increase (more efficient counting). However, this inventory will not be verified at any point during the year.
      - Calculator #2 (consumption-based) lets the user set a percentage of consumption that is assigned to A, B, and C items. The model then assigns a percentage of items as A, B, or C.
      - Calculator #3 (counting resources-based) lets the user choose how many daily cycle counts of A and B items they desire then the model assigns a percentage of items as A, B, or C and gives a suggested daily count of C items to meet auditor standards.
+     ![Calculators](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%232%3A%20ABC%20Analysis%20and%20Cycle%20Counts/Calculators.png)
+     
   8. Two measures of inventory accuracy ("Cycle Counted Consumption" and "Cycle Counted Inventory") were constructed to allow comparison of user inputs across calculators.
   9. Two measures of counting efficiency ("Consumption per Count" and "Inventory per Count") were constructed to allow comparison of user inputs across calculators.
-  10. Two graphs ("Cumulative Consumption Distribution by Item" and "Annual Consumption by Item") were constructed to give the user to make more information when selecting item/consumption percentages. A items would be on the left-hand side of each graph, B items would be in the middle, and C items are on the far right.
+  10. Two graphs ("Cumulative Consumption Distribution by Item" and "Annual Consumption by Item") were constructed to give the user to make more information when selecting item/consumption percentages. A items would be on the left-hand side of each graph, B items would be in the middle, and C items are on the far right:
+  ![Two Graphs](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%232%3A%20ABC%20Analysis%20and%20Cycle%20Counts/Two%20Graphs.png)
 
   **Project #3: Health Insurance Dashboard**
   1. Found public dataset of health insurance information on Kaggle (Source: [Medical Cost Personal Datasets](https://www.kaggle.com/datasets/mirichoi0218/insurance)).
