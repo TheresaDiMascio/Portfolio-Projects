@@ -81,7 +81,7 @@ The purpose of completing these projects is to demonstrate my proficiency in the
      - There are 4000 production parts (e.g. wood, screws, tools, unshaped metals, etc.). 3000 of these are directly related to a single instrument while 1000 are shared among instrument families.
   3. Quantities for each of these item types were arbitrarily assigned roughly to match their complexity/number of models. Formulas were defined in columns H, I, and J to give indices to the start of these item groups in the item master. **_Formula:_** "=$J6 + $G6 + IF($C5 <> $C6, VLOOKUP("Shared " & $C6, $E$35:$G$40, 3, FALSE))"
   
-  ![Instrument Table](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%232%3A%20ABC%20Analysis%20and%20Cycle%20Counts/Instrument%20Table.png)
+     ![Instrument Table](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%232%3A%20ABC%20Analysis%20and%20Cycle%20Counts/Instrument%20Table.png)
   
   4. The "Item Master" worksheet uses these indces to assign an 8-digit item number (e.g. 11000-001) to each of the 5,000 items systematically as follows:
      - First digit represents whether the item is a production, service, or retail item.
@@ -91,9 +91,9 @@ The purpose of completing these projects is to demonstrate my proficiency in the
      - "Item Description" summarizes this numbering logic to describe each item. **_Formula_:** "LEFT($C6, 1) & LOWER(RIGHT($C6, LEN($C6) - 1)) & IF(AND($G6 <> "00", $B6 = "Retail Item"), " model #" & $G6, " " & LOWER($B6) & " #" & $H6)"
      - "Unique" checks that each item number is a unique primary key using SUM(COUNTIFS()).
      
-  ![Item Master 1](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%232%3A%20ABC%20Analysis%20and%20Cycle%20Counts/Item%20Master%201.png)
+     ![Item Master 1](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%232%3A%20ABC%20Analysis%20and%20Cycle%20Counts/Item%20Master%201.png)
   
-  5. Item Master then uses partially random methods to assign values for iventory, standard cost, and annual consumption for each item. Parameters were tweaked until the "Pivot Table" worksheet produced inventory/consumption totals that made sense for the business:
+  5. "Item Master" then uses partially random methods to assign values for iventory, standard cost, and annual consumption for each item. Parameters were tweaked until the "Pivot Table" worksheet produced inventory/consumption totals that made sense for the business:
      - Inventory was assigned random uniformly for service/retail items and according to a randomized power function for production. **_Formula_:** "=ROUND(IF($B6 = "Production Item",POWER(RANDBETWEEN(0, 2), RANDBETWEEN(1, 5)), IF($B6 = "Service Item", RANDBETWEEN(0, 10), RANDBETWEEN(0, 100))), 2)"
      - Standard Cost was assigned uniformly for all items. Retail items cost between $1,000 and $10,000 (this is not the same as price). **_Formula_:** "=ROUND(IF($B6 = "Production Item", RANDBETWEEN(1, 100), IF($B6 = "Service Item", RANDBETWEEN(1, 1000), RANDBETWEEN(1000, 10000))), 2)"
      - Annual Consumption (how many of each item that are used in production/sold each year) was defined with a random power function for production/service items and random uniformly for retail items. Between 5 and 100 of each retail item are sold each year. **_Formula_:** "=ROUND(IF($B6 = "Production Item", POWER(RANDBETWEEN(0, 20), 2), IF($B6 = "Service Item", POWER(RANDBETWEEN(0, 5), 3), RANDBETWEEN(5, 100))), 2)"
@@ -104,7 +104,7 @@ The purpose of completing these projects is to demonstrate my proficiency in the
      - Percent Rank = consumption rank as a percentage = "(COUNTIFS($P:$P, ">" & $P6) + 1) / (COUNTA($I:$I) - 1)"
      - Cumulative Consumption = total consumption of all items that have a lower annual consumption than this item = "SUMIFS($P:$P, $Q:$Q, "<" & $Q6)"
   
-  ![Item Master 2](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%232%3A%20ABC%20Analysis%20and%20Cycle%20Counts/Item%20Master%202.png)
+     ![Item Master 2](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%232%3A%20ABC%20Analysis%20and%20Cycle%20Counts/Item%20Master%202.png)
   
   7. The "ABC Analysis" worksheet was created with the following features:
      - User-defined counts per year for A, B, and C items. These parameters are usually set by auditing standards. A items need to be cycle counted more often to maintain inventory accuracy because they are more valuable and have more turnover (consumption). B items are either valuable or have high turnover. C items are either low in value or low in turnover.
@@ -125,7 +125,7 @@ The purpose of completing these projects is to demonstrate my proficiency in the
   9. Two measures of counting efficiency ("Consumption per Count" and "Inventory per Count") were constructed to allow comparison of user inputs across calculators.
   10. Two graphs ("Cumulative Consumption Distribution by Item" and "Annual Consumption by Item") were constructed to give the user to make more information when selecting item/consumption percentages. A items would be on the left-hand side of each graph, B items would be in the middle, and C items are on the far right:
   
-  ![Two Graphs](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%232%3A%20ABC%20Analysis%20and%20Cycle%20Counts/Two%20Graphs.png)
+     ![Two Graphs](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%232%3A%20ABC%20Analysis%20and%20Cycle%20Counts/Two%20Graphs.png)
 
   **Project #3: Health Insurance Dashboard**
   1. Found public dataset of health insurance information on Kaggle (Source: [Medical Cost Personal Datasets](https://www.kaggle.com/datasets/mirichoi0218/insurance)).
@@ -134,7 +134,7 @@ The purpose of completing these projects is to demonstrate my proficiency in the
   4. Added index column to be used as policyholder's unique ID number.
   5. Wrote the custom "gaussianHeight" function in Power Query to assign a random (Gaussian) height to male and female policyholders given the national averages and standard deviations:
   
-  ![gaussianHeight](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%233%3A%20Health%20Insurance%20Dashboard/Gaussian%20Height%20Function.png)
+     ![gaussianHeight](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%233%3A%20Health%20Insurance%20Dashboard/Gaussian%20Height%20Function.png)
   
   6. Added calculated column "Weight (lbs)" using BMI and height. **_Formula:_** "Number.Round(\[bmi] * Number.Power(\[#"Height (in)"], 2) / 703, 0)"
   7. Added two columns with random numbers between 0 and 1 for generating a probable first and last name for each policyholder.
@@ -146,7 +146,7 @@ The purpose of completing these projects is to demonstrate my proficiency in the
      - Cumulative density function to represent the probability of having a certain name or a more common name in 2010. **_Formula_:** "=\[@\[CUMULATIVE PROPORTION]] / SUM($D:$D)"
   11. Created "User Dashboard" worksheet to act as main interface between policyholder and their confidential health information. Check the box in cell A4 (Excel for desktop only) to view the dashboard in explanation mode:
   
-  ![Explanation Mode](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%233%3A%20Health%20Insurance%20Dashboard/Explanation%20Mode.png)
+     ![Explanation Mode](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%233%3A%20Health%20Insurance%20Dashboard/Explanation%20Mode.png)
   
   12. The policyholder enters their unique ID into cell D7 to view their confidential health information. Features of the dashboard include:
      - Age, sex, and BMI, which were pulled from the original data source. BMI is conditionally formatted to show how overweight (red) or underweight (yellow) a policyholder is.
@@ -161,6 +161,6 @@ The purpose of completing these projects is to demonstrate my proficiency in the
      - FILTER only allows the lookup to search within the birth decade of the policyholder.
   14. The dashboard tells the user how popular their first and last names are as a rank (with correct ordinal suffix) within their gender/birth decade:
   
-  ![Probable Name Generator](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%233%3A%20Health%20Insurance%20Dashboard/Probable%20Name%20Generator.png)
+     ![Probable Name Generator](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%233%3A%20Health%20Insurance%20Dashboard/Probable%20Name%20Generator.png)
   
   **Project #4: Video Game Sales and Ratings (WORK IN PROGRESS)**
