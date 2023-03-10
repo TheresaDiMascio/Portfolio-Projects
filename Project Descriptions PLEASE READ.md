@@ -18,7 +18,7 @@ The purpose of completing these projects is to demonstrate my proficiency in the
   2. Uploaded CSV file (435 rows, 22 columns) to GitHub to use as primary data source.
   3. Used Power Query's Web.Contents and CSV.Document data connectors to load the data from GitHub into Excel (worksheet "NYC SAT Data"):
   
-  ![Power Query Load](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%231%3A%20Multivariate%20Analysis%20of%20SAT%20Data/Power%20Query%20Load.png)
+     ![Power Query Load](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%231%3A%20Multivariate%20Analysis%20of%20SAT%20Data/Power%20Query%20Load.png)
   
   5. Used Power Query's Web.Contents and Pdf.Tables data connectors to read SAT score percentiles from College Board's official report on SAT scores (Source: [Understanding SAT Scores](https://satsuite.collegeboard.org/media/pdf/understanding-sat-scores.pdf)).
      - Original table import needed to be cleaned in Power Query by promoting headers, breaking double-column format into two tables, and appending:
