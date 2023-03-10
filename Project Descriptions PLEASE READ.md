@@ -1,14 +1,14 @@
 # Portfolio-Projects
 Theresa DiMascio's portfolio projects for professional resume.
 
-The purpose of completing these projects is to demonstrate my proficiency in the skills required for a career in corporate research or business process analysis.
+The purpose of completing these projects is to demonstrate my proficiency in the skills required for a successful career in corporate research or business process analysis.
 
 ### **Project List:**
 
   - [**Project #1:** Multivariate Analysis of SAT Data](https://github.com/TheresaDiMascio/Portfolio-Projects/tree/main/Project%20%231:%20Multivariate%20Analysis%20of%20SAT%20Data)
   - [**Project #2:** ABC Analysis and Cycle Counts](https://github.com/TheresaDiMascio/Portfolio-Projects/tree/main/Project%20%232:%20ABC%20Analysis%20and%20Cycle%20Counts)
   - [**Project #3:** Health Insurance Dashboard](https://github.com/TheresaDiMascio/Portfolio-Projects/tree/main/Project%20%233:%20Health%20Insurance%20Dashboard)
-  - [**Project #4:** Video Game Sales and Ratings](https://github.com/TheresaDiMascio/Portfolio-Projects/tree/main/Project%20%234:%20Video%20Game%20Sales%20and%20Ratings)
+  - [**Project #4:** Video Game Sales and Ratings **(WORK IN PROGRESS)**](https://github.com/TheresaDiMascio/Portfolio-Projects/tree/main/Project%20%234:%20Video%20Game%20Sales%20and%20Ratings)
 
 ### **Project Summaries:**
 
@@ -62,9 +62,18 @@ The purpose of completing these projects is to demonstrate my proficiency in the
      - Inventory was assigned random uniformly for service/retail items and according to a randomized power function for production. **_Formula_:** "=ROUND(IF($B6 = "Production Item",POWER(RANDBETWEEN(0, 2), RANDBETWEEN(1, 5)), IF($B6 = "Service Item", RANDBETWEEN(0, 10), RANDBETWEEN(0, 100))), 2)"
      - Standard Cost was assigned uniformly for all items. Retail items cost between $1,000 and $10,000 (this is not the same as price). **_Formula_:** "=ROUND(IF($B6 = "Production Item", RANDBETWEEN(1, 100), IF($B6 = "Service Item", RANDBETWEEN(1, 1000), RANDBETWEEN(1000, 10000))), 2)"
      - Annual Consumption (how many of each item that are used in production/sold each year) was defined with a random power function for production/service items and random uniformly for retail items. Between 5 and 100 of each retail item are sold each year. **_Formula_:** "=ROUND(IF($B6 = "Production Item", POWER(RANDBETWEEN(0, 20), 2), IF($B6 = "Service Item", POWER(RANDBETWEEN(0, 5), 3), RANDBETWEEN(5, 100))), 2)"
-  6. Five calculated columns were added to the "Item Master" worksheet:
+  6. Five calculated columns were added to the "Item Master" worksheet (one calculation per item):
      - Inventory value = Inventory x Standard Cost
      - Annual Consumption Value = Consumption x Standard Cost
      - Consumption Rank = where an item ranks with respect to its annual consumption value = "COUNTIFS($P:$P, ">" & $P6) + 1"
      - Percent Rank = consumption rank as a percentage = "(COUNTIFS($P:$P, ">" & $P6) + 1) / (COUNTA($I:$I) - 1)"
      - Cumulative Consumption = total consumption of all items that have a lower annual consumption than this item = "SUMIFS($P:$P, $Q:$Q, "<" & $Q6)"
+  7. The "ABC Analysis" worksheet was created with the following features:
+     - User-defined counts per year for A, B, and C items. These parameters are usually set by auditing standards. A items need to be cycle counted more often to maintain inventory accuracy because they are more valuable and have more turnover (consumption). B items are either valuable or have high turnover. C items are either low in value or low in turnover.
+     - User-defined counting days per year. A typical business would only count on business days (around 250 days per year), but larger companies may cycle count 365 days a year.
+     - Calculator #1 (item-based) lets the user set a percentage of items that are A, B, or C. The model then suggests a certain number of daily counts of each item and calculates the amount of consumption that is verified by cycle counting according to the auditing standards set by the user. If the total percentage is below 100%, the items that are not assigned A, B, or C will not be counted, and the "Consumption per Count" measure will increase (more efficient counting). However, this inventory will not be verified at any point during the year.
+     - Calculator #2 (consumption-based) lets the user set a percentage of consumption that is assigned to A, B, and C items. The model then assigns a percentage of items as A, B, or C.
+     - Calculator #3 (counting resources-based) lets the user choose how many daily cycle counts of A and B items they desire then the model assigns a percentage of items as A, B, or C and gives a suggested daily count of C items to meet auditor standards.
+  8. Two measures of inventory accuracy ("Cycle Counted Consumption" and "Cycle Counted Inventory") were constructed to allow comparison of user inputs across calculators.
+  9. Two measures of counting efficiency ("Consumption per Count" and "Inventory per Count") were constructed to allow comparison of user inputs across calculators.
+  10. Two graphs ("Cumulative Consumption Distribution by Item" and "Annual Consumption by Item") were constructed to give the user to make more information when selecting item/consumption percentages. A items would be on the left-hand side of each graph, B items would be in the middle, and C items are on the far right.
