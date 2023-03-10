@@ -22,7 +22,8 @@ The purpose of completing these projects is to demonstrate my proficiency in the
      - Original table import needed to be cleaned in Power Query by promoting headers, breaking double-column format into two tables, and appending:
      ![SAT Percentiles Initial Load](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%231%3A%20Multivariate%20Analysis%20of%20SAT%20Data/SAT%20Percentiles%20Initial%20Load.png)
      - Removed null rows and changed data types to percentiles
-     - Left with two tables (Total SAT Percentiles and SAT Section Percentiles) for looking up percentiles for SAT subsection and total scores
+     - Left with two tables (Total SAT Percentiles and SAT Section Percentiles) for looking up percentiles for SAT subsection and total scores:
+     ![SAT Percentiles Final](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%231%3A%20Multivariate%20Analysis%20of%20SAT%20Data/SAT%20Percentiles%20Final.png)
   6. Used Power Query's Web.Content and Excel.Workbook data connectors to import IRS's tax return data by ZIP code for New York (Source: [IRS New York Tax Returns by ZIP](https://www.irs.gov/pub/irs-soi/20zp33ny.xlsx)).
      - Initial load had many extraneous fields and needed to be transformed before use:
      ![IRS Tax Initial Load](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%231%3A%20Multivariate%20Analysis%20of%20SAT%20Data/IRS%20Tax%20Initial%20Load.png)
