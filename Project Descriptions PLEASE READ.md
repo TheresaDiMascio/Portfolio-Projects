@@ -23,7 +23,7 @@ The purpose of completing these projects is to demonstrate my proficiency in the
      - Original table import needed to be cleaned in Power Query by promoting headers, breaking double-column format into two tables, and appending:
      ![SAT Percentiles Initial Load](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%231%3A%20Multivariate%20Analysis%20of%20SAT%20Data/SAT%20Percentiles%20Initial%20Load.png)
      
-     - Removed null rows and changed data types to percentiles
+     - Removed null rows and changed data types to percentiles.
      - Left with two tables (Total SAT Percentiles and SAT Section Percentiles) for looking up percentiles for SAT subsection and total scores:
      ![SAT Percentiles Final](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%231%3A%20Multivariate%20Analysis%20of%20SAT%20Data/SAT%20Percentiles%20Final.png)
      
@@ -31,22 +31,23 @@ The purpose of completing these projects is to demonstrate my proficiency in the
      - Initial load had many extraneous fields and needed to be transformed before use:
      ![IRS Tax Initial Load](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%231%3A%20Multivariate%20Analysis%20of%20SAT%20Data/IRS%20Tax%20Initial%20Load.png)
      
-     - Removed all fields except ZIP Code, Income Bracket, Count of Returns Filed, and Reported Income
+     - Removed all fields except ZIP Code, Income Bracket, Count of Returns Filed, and Reported Income.
      - Aggregated rows by ZIP code to calculate Average Total Income for each New York ZIP code:
      ![IRS Returns by ZIP](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%231%3A%20Multivariate%20Analysis%20of%20SAT%20Data/Returns%20by%20ZIP.png)
      
-  7. Loaded all tables into Excel then added 18 calculated columns (orange headers) to NYC SAT Data worksheet:
-     - If a school name contained certain words "=IF(ISNUMBER(SEARCH("SCIENCE", UPPER(\[@\[School Name]]))), TRUE(), FALSE())"
-     - Test duration in "hrs" and "hrs+min" given start/end times
+  7. Loaded all tables into Excel then added 18 calculated columns (orange headers) to "NYC SAT Data" worksheet:
+     - If a school name contained certain words: "=IF(ISNUMBER(SEARCH("SCIENCE", UPPER(\[@\[School Name]]))), TRUE(), FALSE())"
+     - Test duration in "hrs" and "hrs+min" given start/end times.
      - Total SAT 1600 and 2400 scores given three subsection scores.
-     - School's percentile among the NYC high schools subpop. in math, reading, and total SAT 1600 score "=PERCENTRANK.INC(Z:Z, \[@\[Average Score (SAT Math)]])"
-     - School's percentile among College Board's national SAT scores report "=XLOOKUP(10 * ROUND(\[@\[Average Score (SAT Math)]] / 10, 0), 'SAT Section Percentiles'!$A:$A, 'SAT Section Percentiles'!$D:$D, 0)"
-     - True/false column for whether a school is in the top 50 for NYC public schools "=IF(RANK(\[@\[SAT 1600]], AD:AD, 0) <= 50, TRUE, FALSE)"
-     - True/false column for if a school is above College Board's reported national average "=IF(\[@\[National Sample LOOKUP Total]] > 0.5, TRUE, FALSE)"
-     - Relative strong subject "=IF(\[@\[National Sample LOOKUP Math]] > \[@\[National Sample LOOKUP Reading]], "Math", IF(\[@\[National Sample LOOKUP Reading]] > \[@\[National Sample LOOKUP Math]], "Reading", "Balanced Math/Reading"))"
-  8. Created new worksheet (Exploratory Graphs) to visualize and perform multivariate analysis on the data:
+     - School's percentile among the NYC high schools subpop. in math, reading, and total SAT 1600 score: "=PERCENTRANK.INC(Z:Z, \[@\[Average Score (SAT Math)]])"
+     - School's percentile among College Board's national SAT scores report: "=XLOOKUP(10 * ROUND(\[@\[Average Score (SAT Math)]] / 10, 0), 'SAT Section Percentiles'!$A:$A, 'SAT Section Percentiles'!$D:$D, 0)"
+     - True/false column for whether a school is in the top 50 for NYC public schools: "=IF(RANK(\[@\[SAT 1600]], AD:AD, 0) <= 50, TRUE, FALSE)"
+     - True/false column for if a school is above College Board's reported national average: "=IF(\[@\[National Sample LOOKUP Total]] > 0.5, TRUE, FALSE)"
+     - Relative strong subject: "=IF(\[@\[National Sample LOOKUP Math]] > \[@\[National Sample LOOKUP Reading]], "Math", IF(\[@\[National Sample LOOKUP Reading]] > \[@\[National Sample LOOKUP Math]], "Reading", "Balanced Math/Reading"))"
+  8. Created new worksheet ("Exploratory Graphs") to visualize and perform multivariate analysis on the data:
      - Calculated inter-correlations between subsection scores. Reading/writing scores were highly correlated with each other. Math scores were strongly correlated with reading/writing, but not as much as reading with writing:
      ![Subsection Inter-Correlation](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%231%3A%20Multivariate%20Analysis%20of%20SAT%20Data/Subsection%20Inter-Correlations.png)
+     
      - Used scatterplot clustering to visualize a weak yet detectable correlation between school racial breakdown and subsection/total SAT scores:
      ![Race Clustering](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%231%3A%20Multivariate%20Analysis%20of%20SAT%20Data/Race%20Clustering.png)
      
@@ -68,7 +69,7 @@ The purpose of completing these projects is to demonstrate my proficiency in the
      - Instruments have between 5 and 20 related retail parts (e.g. cases, bows, reeds, stands, etc.) that are directly related to a sellable instrument. Including the 200 of these related retail parts, there are 500 total retail parts.
      - There are 500 related service parts (e.g. replacement strings, electronics, installment services, etc.). Of these, 400 are directly related to a single instrument while 100 are shared among instrument families.
      - There are 4000 production parts (e.g. wood, screws, tools, unshaped metals, etc.). 3000 of these are directly related to a single instrument while 1000 are shared among instrument families.
-  3. Counts for each of these item types were arbitrarily assigned roughly to match their complexity/number of models. Formulas were defined in columns H, I, and J to give indices to the start of these item groups in the item master. **_Ex_:** "=$J6 + $G6 + IF($C5 <> $C6, VLOOKUP("Shared " & $C6, $E$35:$G$40, 3, FALSE))"
+  3. Quantities for each of these item types were arbitrarily assigned roughly to match their complexity/number of models. Formulas were defined in columns H, I, and J to give indices to the start of these item groups in the item master. **_Formula:_** "=$J6 + $G6 + IF($C5 <> $C6, VLOOKUP("Shared " & $C6, $E$35:$G$40, 3, FALSE))"
   ![Instrument Table](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%232%3A%20ABC%20Analysis%20and%20Cycle%20Counts/Instrument%20Table.png)
   
   4. The "Item Master" worksheet uses these indces to assign an item number to each of the 5000 items systematically as follows:
