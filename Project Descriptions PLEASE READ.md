@@ -63,9 +63,9 @@ The purpose of completing these projects is to demonstrate my proficiency in the
      
      ![Geographic Clustering](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%231%3A%20Multivariate%20Analysis%20of%20SAT%20Data/Geographic%20Clustering.png)
      
-     - Visualized strong relationship between average SAT 2400 score and racial breakdown when data is stratified by burough. Schools predominated by whites are more present in Staten Island, which performed higher on the SAT. Schools predominated by Hispanic/black students were more present in the Bronx/Brooklyn, which performed worse on the SAT:
+     - Visualized strong relationship between average SAT 2400 score and racial breakdown when data is stratified by borough. Schools predominated by whites are more present in Staten Island, which performed higher on the SAT. Schools predominated by Hispanic/black students were more present in the Bronx/Brooklyn, which performed worse on the SAT:
      
-     ![Racial Breakdown by Burough](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%231%3A%20Multivariate%20Analysis%20of%20SAT%20Data/Racial%20Breakdown%20by%20Burough.png)
+     ![Racial Breakdown by Borough](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%231%3A%20Multivariate%20Analysis%20of%20SAT%20Data/Racial%20Breakdown%20by%20Borough.png)
      
      - Used linear regression to model a moderate positive correlation between average SAT 2400 scores and percentage of student body that took the SAT:
      
@@ -83,7 +83,7 @@ The purpose of completing these projects is to demonstrate my proficiency in the
   
      ![Instrument Table](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%232%3A%20ABC%20Analysis%20and%20Cycle%20Counts/Instrument%20Table.png)
   
-  4. The "Item Master" worksheet uses these indces to assign an 8-digit item number (e.g. 11000-001) to each of the 5,000 items systematically as follows:
+  4. The "Item Master" worksheet uses these indices to assign an 8-digit item number (e.g. 11000-001) to each of the 5,000 items systematically as follows:
      - First digit represents whether the item is a production, service, or retail item.
      - Next 2 digits represent the related instrument where the first digit corresponds with the instrument family.
      - Next 2 digits represent the instrument/accessory model using XMATCH and VLOOKUP functions. **_Formula_:** "=TEXT(IF($B6 = "Retail Item", IF((ROW($A6) - 4504 - XMATCH($C6, $C$4506:$C$5005, 0, 1)) <= VLOOKUP($C6, 'Instrument Table'!$B:$D, 3, FALSE), ROW($A6) - 4504 - XMATCH($C6, $C$4506:$C$5005, 0, 1), 0), 0), "00")"
@@ -93,7 +93,7 @@ The purpose of completing these projects is to demonstrate my proficiency in the
      
      ![Item Master 1](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%232%3A%20ABC%20Analysis%20and%20Cycle%20Counts/Item%20Master%201.png)
   
-  5. "Item Master" then uses partially random methods to assign values for iventory, standard cost, and annual consumption for each item. Parameters were tweaked until the "Pivot Table" worksheet produced inventory/consumption totals that made sense for the business:
+  5. "Item Master" then uses partially random methods to assign values for inventory, standard cost, and annual consumption for each item. Parameters were tweaked until the "Pivot Table" worksheet produced inventory/consumption totals that made sense for the business:
      - Inventory was assigned random uniformly for service/retail items and according to a randomized power function for production. **_Formula_:** "=ROUND(IF($B6 = "Production Item",POWER(RANDBETWEEN(0, 2), RANDBETWEEN(1, 5)), IF($B6 = "Service Item", RANDBETWEEN(0, 10), RANDBETWEEN(0, 100))), 2)"
      - Standard Cost was assigned uniformly for all items. Retail items cost between $1,000 and $10,000 (this is not the same as price). **_Formula_:** "=ROUND(IF($B6 = "Production Item", RANDBETWEEN(1, 100), IF($B6 = "Service Item", RANDBETWEEN(1, 1000), RANDBETWEEN(1000, 10000))), 2)"
      - Annual Consumption (how many of each item that are used in production/sold each year) was defined with a random power function for production/service items and random uniformly for retail items. Between 5 and 100 of each retail item are sold each year. **_Formula_:** "=ROUND(IF($B6 = "Production Item", POWER(RANDBETWEEN(0, 20), 2), IF($B6 = "Service Item", POWER(RANDBETWEEN(0, 5), 3), RANDBETWEEN(5, 100))), 2)"
