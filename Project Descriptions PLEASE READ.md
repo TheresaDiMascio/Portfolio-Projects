@@ -63,7 +63,7 @@ The purpose of completing these projects is to demonstrate my proficiency in the
      
      ![Geographic Clustering](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%231%3A%20Multivariate%20Analysis%20of%20SAT%20Data/Geographic%20Clustering.png)
      
-     - Visualized strong relationship between average SAT 2400 score and racial breakdown when data is statified by burough. Schools predominated by whites are more present in Staten Island, which performed higher on the SAT. Schools predominated by Hispanic/black students were more present in the Bronx/Brooklyn, which performed worse on the SAT:
+     - Visualized strong relationship between average SAT 2400 score and racial breakdown when data is stratified by burough. Schools predominated by whites are more present in Staten Island, which performed higher on the SAT. Schools predominated by Hispanic/black students were more present in the Bronx/Brooklyn, which performed worse on the SAT:
      
      ![Racial Breakdown by Burough](https://raw.githubusercontent.com/TheresaDiMascio/Portfolio-Projects/main/Project%20%231%3A%20Multivariate%20Analysis%20of%20SAT%20Data/Racial%20Breakdown%20by%20Burough.png)
      
